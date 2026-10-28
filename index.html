@@ -1,0 +1,1054 @@
+<title>Hysan Jones Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Layout concept: a spec-sheet portfolio. Huge Chicago-signage type, a line-follower track running under the hero,
+     each project set as a drawing sheet with a title block, caution-yellow as the single accent. Dark by commitment. */
+  :root {
+    --bg: #0a0c10;
+    --surface: #12161c;
+    --surface-2: #181d25;
+    --line: #262d37;
+    --fg: #eef1f4;
+    --muted: #8f9aa7;
+    --accent: #f5c518;
+    --accent-ink: #14110a;
+    --display: "Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+    --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font: 400 16px/1.6 var(--body);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .in { max-width: 1200px; margin: 0 auto; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: .92; text-transform: uppercase; margin: 0; text-wrap: balance; }
+
+  /* top bar */
+  .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 22px; border-bottom: 1px solid var(--line); }
+  .mark { font-family: var(--display); font-weight: 900; font-size: 28px; letter-spacing: .02em; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+  .mark i { width: 14px; height: 14px; background: var(--accent); display: inline-block; }
+  nav { display: flex; gap: 22px; flex-wrap: wrap; }
+  nav a { text-decoration: none; color: var(--muted); font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 6px 0; }
+  nav a:hover { color: var(--accent); }
+
+  /* hero */
+  .hero { padding-block: clamp(40px, 8vw, 96px) 0; }
+  .hero-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .hero-id { min-width: 0; }
+  .me { width: clamp(120px, 19vw, 250px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent); flex: none; margin-bottom: .5rem; background: var(--surface); }
+  .hero h1 { font-size: clamp(4.6rem, 21vw, 15rem); font-weight: 900; letter-spacing: -.01em; margin-top: 18px; }
+  .hero h1 span { display: block; }
+  .hero h1 .y { color: var(--accent); }
+  .hero-row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px 64px; align-items: end; margin-top: clamp(24px, 4vw, 44px); }
+  .lede { font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.5; max-width: 34em; margin: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .tags span { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--line); padding: 9px 12px; color: var(--fg); background: var(--surface); }
+  .track { margin-top: clamp(32px, 5vw, 64px); border-top: 1px solid var(--line); }
+  .track svg { display: block; width: 100%; height: auto; }
+  .track .lane { fill: none; stroke: #dfe5eb; stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; opacity: .9; }
+  .track .bot { fill: var(--accent); }
+  .track .halo { fill: var(--accent); opacity: .25; }
+
+  .stripe { height: 12px; background: repeating-linear-gradient(-45deg, var(--accent) 0 14px, var(--bg) 14px 28px); }
+
+  /* sections */
+  section { padding-block: clamp(56px, 9vw, 112px) 0; }
+  .sec-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 32px; margin-bottom: clamp(28px, 5vw, 56px); }
+  .sec-head h2 { font-size: clamp(3rem, 9vw, 6.5rem); }
+  .sec-head p { margin: 0; max-width: 28em; color: var(--muted); }
+
+  /* project sheets */
+  .sheet { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 0; border: 1px solid var(--line); background: var(--surface); margin-bottom: 28px; }
+  .sheet.flip .media { order: 2; }
+  .media { background: #05070a; display: grid; gap: 1px; align-content: start; min-width: 0; }
+  .media.pair { grid-template-columns: 1fr 1fr; background: var(--line); }
+  .media img, .media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .media.tall img, .media.tall video { aspect-ratio: 3 / 4; }
+  .media.pair { align-content: stretch; grid-auto-rows: 1fr; }
+  .media.pair img { aspect-ratio: auto; min-height: 360px; }
+  .media.vid { place-items: center; background: #05070a; }
+  .media.vid video { aspect-ratio: 9 / 16; max-height: 640px; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; }
+  .body { padding: clamp(20px, 3vw, 40px); display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  .body h3 { font-size: clamp(2.4rem, 5vw, 4rem); }
+  .body p { margin: 0; color: #c9d0d8; max-width: 36em; }
+  .block { margin-top: auto; border-top: 1px solid var(--line); }
+  .block dl { margin: 0; display: grid; grid-template-columns: 8.5em minmax(0, 1fr); }
+  .block dt, .block dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+  .block dt { font: 500 11px/1.9 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .block dd { font-size: 14.5px; line-height: 1.5; }
+  .badge { align-self: flex-start; background: var(--accent); color: var(--accent-ink); font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; padding: 7px 10px; }
+
+  /* field work */
+  .field-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  figure { margin: 0; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; min-width: 0; }
+  figure img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+  figcaption { padding: 14px 16px 16px; font-size: 14px; line-height: 1.5; color: #c9d0d8; display: flex; flex-direction: column; gap: 6px; }
+  figcaption b { font: 500 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .trade { margin-top: 56px; }
+  .trade-h { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  .trade-h h3 { font-size: clamp(2rem, 4vw, 3rem); }
+  .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .two.plain figure img { aspect-ratio: 4 / 3; }
+  .zoom { cursor: zoom-in; }
+  .log { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+  .log .wide { grid-column: span 2; }
+  .log .wide img { aspect-ratio: 3 / 2; object-position: 50% 46%; }
+  .log .top img { object-position: 50% 20%; aspect-ratio: 11 / 15; }
+  .log figure { align-self: start; }
+  .log-h { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-top: 44px; }
+  .log-h h3 { font-size: clamp(2rem, 4vw, 3rem); }
+
+  /* toolkit */
+  .tool-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tool-row span { font: 500 13px/1 var(--mono); letter-spacing: .06em; border: 1px solid var(--line); background: var(--surface); padding: 12px 16px; }
+
+  /* contact */
+  .contact { padding-bottom: clamp(56px, 8vw, 96px); }
+  .contact h2 { font-size: clamp(3.4rem, 14vw, 10rem); }
+  .contact h2 em { font-style: normal; color: var(--accent); }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--accent-ink); font: 500 13px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-decoration: none; padding: 16px 22px; border: 0; }
+  .btn.off { background: transparent; color: var(--muted); border: 1px dashed var(--line); }
+  footer { border-top: 1px solid var(--line); padding-block: 24px 36px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+  /* background */
+  .edu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 44px; }
+  .edu > div { background: var(--surface); border: 1px solid var(--line); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
+  .edu h3 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .edu p { margin: 0; color: #c9d0d8; }
+  .tl { border-top: 1px solid var(--line); }
+  .tl-item { display: grid; grid-template-columns: 11em minmax(0, 1fr); gap: 10px 32px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .tl-item h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+  .tl-item .org { color: var(--accent); margin: 8px 0 0; }
+  .tl-item ul { margin: 14px 0 0; padding-left: 1.1em; color: #c9d0d8; max-width: 52em; display: flex; flex-direction: column; gap: 8px; }
+  .tl-item li::marker { color: var(--accent); }
+  .note { margin: 0 0 18px; color: #c9d0d8; max-width: 52em; }
+  .skill-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; }
+  .skill-groups h3 { font-size: 1.6rem; margin-bottom: 14px; }
+  .skill-groups .tool-row span { padding: 10px 13px; font-size: 12.5px; }
+  .copy { font: 500 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fg); background: var(--surface-2); border: 1px solid var(--line); padding: 10px 12px; cursor: pointer; }
+  .copy:hover { border-color: var(--accent); color: var(--accent); }
+  .mail { font: 500 15px/1 var(--mono); letter-spacing: .02em; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+
+  /* in progress */
+  .live { display: inline-flex; align-items: center; gap: 8px; }
+  .live::before { content: ""; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+  nav a.live { color: var(--fg); }
+  .wip { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); border: 1px solid var(--line); background: var(--surface); }
+  .wip .dwg { border: 0; border-right: 1px solid var(--line); background: var(--surface); }
+  .wip .dwg img { aspect-ratio: auto; object-fit: contain; background: #fff; }
+  .progress { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px 40px; margin-top: 28px; align-items: start; }
+  .steps-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .steps li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 2px 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .steps .dot { width: 18px; height: 18px; border: 2px solid var(--line); margin-top: 6px; grid-row: span 3; }
+  .steps .done .dot { background: var(--accent); border-color: var(--accent); }
+  .steps h4 { font: 800 1.7rem/1 var(--display); text-transform: uppercase; margin: 0; }
+  .steps .st { font: 500 11px/1.6 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .steps .done .st { color: var(--accent); }
+  .steps p { margin: 4px 0 0; color: #c9d0d8; }
+  .steps .next h4 { color: var(--muted); }
+  .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .progress figure img { aspect-ratio: 3 / 4; object-position: 50% 40%; }
+  .goal + .goal { margin-top: 14px; }
+  .badge.live { color: var(--accent-ink); }
+  .badge.live::before { background: var(--accent-ink); }
+
+  /* interests */
+  .goal { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); border: 1px solid var(--line); background: var(--surface); }
+  .goal .viz { background: #05070a; border-right: 1px solid var(--line); display: grid; place-items: center; padding: 28px; }
+  .goal .viz svg { width: 100%; max-width: 340px; height: auto; display: block; }
+  .goal .viz .ln { fill: none; stroke: #dfe5eb; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+  .goal .viz .ac { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+  .goal .viz .dash { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 6; }
+  .goal .viz text { fill: var(--muted); font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+  .blocks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 4px; }
+  .blocks h4 { font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; margin: 0 0 12px; color: var(--accent); }
+  .blocks .learn h4 { color: var(--muted); }
+  .blocks ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .blocks li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 14.5px; line-height: 1.5; }
+
+  /* ===== v7 polish ===== */
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none; background: radial-gradient(900px 520px at 88% -6%, rgba(245, 197, 24, .13), transparent 62%); }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: linear-gradient(#000, transparent 75%); mask-image: linear-gradient(#000, transparent 75%); }
+  .in { position: relative; z-index: 1; }
+  section { border-top: 1px solid var(--line); margin-top: clamp(56px, 9vw, 112px); padding-block: clamp(40px, 6vw, 72px) 0; }
+  .sec-head h2 { font-size: clamp(2.8rem, 7.5vw, 5.2rem); }
+  .sec-head h2::before { content: ""; display: block; width: 44px; height: 6px; background: var(--accent); margin-bottom: 18px; }
+  .sheet, .wip, .goal, .fcard, .edu > div, figure { transition: border-color .2s ease, transform .2s ease; }
+  figure:hover, .fcard:hover, .edu > div:hover { border-color: #3a4452; }
+  .stripe { display: none; }
+
+  .hero { padding-block: clamp(32px, 6vw, 72px) 0; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 40px clamp(32px, 6vw, 88px); align-items: center; }
+  .kicker { display: flex; align-items: center; gap: 14px; color: var(--accent); }
+  .kicker .bar { width: 44px; height: 2px; background: var(--accent); display: inline-block; }
+  .hero h1.obj { font-size: clamp(2.6rem, 6.2vw, 5.2rem); font-weight: 800; line-height: .97; letter-spacing: -.005em; margin: 22px 0 0; text-transform: uppercase; }
+  .hero h1.obj em { font-style: normal; color: var(--accent); }
+  .hero .lede { margin-top: 26px; max-width: 34em; color: #c9d0d8; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn.ghost { background: transparent; color: var(--fg); border: 1px solid #3a4452; }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .id-card { background: linear-gradient(180deg, var(--surface-2), var(--surface)); border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; gap: 18px; position: relative; }
+  .id-card::before { content: ""; position: absolute; left: -1px; top: -1px; width: 56px; height: 56px; border-left: 3px solid var(--accent); border-top: 3px solid var(--accent); }
+  .id-card .ph { width: clamp(150px, 16vw, 210px); aspect-ratio: 1; border-radius: 50%; padding: 6px; border: 2px solid var(--accent); }
+  .id-card .ph img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+  .id-card .name { font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: .95; }
+  .id-card dl { margin: 0; display: grid; grid-template-columns: 6.5em minmax(0, 1fr); border-top: 1px solid var(--line); }
+  .id-card dt, .id-card dd { margin: 0; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .id-card dt { font: 500 11px/1.8 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .id-card dd { font-size: 14.5px; }
+  .open { display: inline-flex; align-items: center; gap: 10px; font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--fg); }
+  .open::before { content: ""; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; animation: pulse 1.8s ease-in-out infinite; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: clamp(40px, 6vw, 72px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stats > div { padding: 22px 24px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; }
+  .stats > div:last-child { border-right: 0; }
+  .stats b { font: 800 clamp(2.2rem, 4vw, 3.4rem)/1 var(--display); color: var(--accent); font-variant-numeric: tabular-nums; }
+  .stats span { font-size: 14px; color: #c9d0d8; line-height: 1.4; }
+
+  .focus-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .fcard { background: var(--surface); border: 1px solid var(--line); padding: clamp(22px, 3vw, 36px); display: flex; flex-direction: column; gap: 16px; }
+  .fcard h3 { font-size: clamp(2.2rem, 4vw, 3.2rem); }
+  .fcard > p { margin: 0; color: #c9d0d8; max-width: 34em; }
+  .fcard ul { list-style: none; margin: 4px 0 0; padding: 0; }
+  .fcard li { padding: 12px 0 12px 22px; border-top: 1px solid var(--line); position: relative; font-size: 14.5px; line-height: 1.55; color: #dfe4ea; }
+  .fcard li::before { content: ""; position: absolute; left: 0; top: 20px; width: 9px; height: 2px; background: var(--accent); }
+  .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 40px; position: relative; counter-reset: step; }
+  .flow > div { padding: 26px 24px 0 0; position: relative; border-top: 2px solid var(--line); counter-increment: step; }
+  .flow > div::before { content: ""; position: absolute; top: -6px; left: 0; width: 10px; height: 10px; background: var(--accent); }
+  .flow .mono { display: block; margin-bottom: 10px; }
+  .flow .mono::before { content: "0" counter(step) "  /  "; color: var(--accent); }
+  .flow h4 { font: 800 1.8rem/1 var(--display); text-transform: uppercase; margin: 0 0 10px; }
+  .flow p { margin: 0; color: #c9d0d8; font-size: 14.5px; line-height: 1.55; }
+
+  /* hologram */
+  .holo { position: relative; height: clamp(460px, 70vh, 680px); margin-top: 28px; overflow: hidden; touch-action: pan-y; background: radial-gradient(50% 55% at 50% 62%, rgba(245, 197, 24, .08), transparent 70%); -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent); }
+  .holo canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  /* lightbox */
+  .lb { position: fixed; inset: 0; background: rgba(5, 7, 10, .94); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 50; cursor: zoom-out; }
+  .lb.on { display: flex; }
+  .lb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+  @media (max-width: 900px) {
+    .hero-row, .sheet { grid-template-columns: minmax(0, 1fr); }
+    .sheet.flip .media { order: 0; }
+    .tags { justify-content: flex-start; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stats > div:nth-child(2) { border-right: 0; }
+    .stats > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .focus-grid { grid-template-columns: minmax(0, 1fr); }
+    .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 0; }
+    .hero-top { flex-direction: column-reverse; align-items: flex-start; gap: 18px; }
+    .me { margin-bottom: 0; width: 120px; }
+    .goal { grid-template-columns: minmax(0, 1fr); }
+    .goal .viz { border-right: 0; border-bottom: 1px solid var(--line); }
+    .wip, .progress { grid-template-columns: minmax(0, 1fr); }
+    .wip .dwg { border-right: 0; border-bottom: 1px solid var(--line); }
+    .edu { grid-template-columns: minmax(0, 1fr); }
+    .tl-item { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+    .skill-groups { grid-template-columns: minmax(0, 1fr); }
+    .blocks { grid-template-columns: minmax(0, 1fr); }
+    .field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .log { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 520px) {
+    .two { grid-template-columns: minmax(0, 1fr); }
+    .log { grid-template-columns: minmax(0, 1fr); }
+    .log .wide { grid-column: auto; }
+    .block dl { grid-template-columns: 7em minmax(0, 1fr); }
+    nav { gap: 14px; }
+    .flow { grid-template-columns: minmax(0, 1fr); }
+    .stats b { font-size: 2.2rem; }
+    .stats > div { padding: 18px 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<div class="in">
+  <header class="top">
+    <a class="mark" href="#top"><i></i>HJ</a>
+    <nav aria-label="Sections">
+      <a href="#focus">Focus</a>
+      <a href="#internship">Internship</a>
+      <a href="#rockets">Rockets</a>
+      <a href="#line-follower">Line follower</a>
+      <a class="live" href="#in-progress">In progress</a>
+      <a href="#background">Background</a>
+      <a href="#interests">Interests</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="mono kicker"><span class="bar"></span>Objective</p>
+          <h1 class="obj">Mechanical engineer building a career in <em>energy</em> and <em>product development</em>.</h1>
+          <p class="lede">I design parts, wire and plumb real systems, and test what I build. My work connects the CAD model to the finished product, from the first sketch to the final check against the drawing.</p>
+          <div class="cta">
+            <a class="btn" href="#focus">See the work</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/hysan-jones-a1098b272" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+          </div>
+        </div>
+        <aside class="id-card" aria-label="About Hysan Jones">
+          <div class="ph"><img src="img/portrait.jpg" alt="Portrait of Hysan Jones"></div>
+          <h2 class="name">Hysan Jones</h2>
+          <dl>
+            <dt>Degree</dt><dd>B.S., Mechanical Engineering</dd>
+            <dt>School</dt><dd>University of Illinois Chicago</dd>
+            <dt>Expected</dt><dd>May 2028</dd>
+            <dt>Based in</dt><dd>Chicago, IL</dd>
+          </dl>
+          <span class="open">Open to internships</span>
+        </aside>
+      </div>
+      <div class="track" aria-hidden="true">
+        <svg viewBox="0 0 1200 190" preserveAspectRatio="xMidYMid meet">
+          <path id="lane" class="lane" d="M0 120 H150 V60 H260 C330 60 330 150 400 150 S470 40 540 40 S610 150 700 150 H760 V70 H850 C920 70 920 140 990 140 H1060 V50 C1060 20 1100 20 1100 50 V150 H1200"/>
+          <circle id="halo" class="halo" r="16" cx="0" cy="120"/>
+          <circle id="bot" class="bot" r="7" cx="0" cy="120"/>
+        </svg>
+      </div>
+      <div class="stats">
+        <div><b>4</b><span>units where I replaced supply lines in sweated copper</span></div>
+        <div><b>2</b><span>units rewired to National Electrical Code standards</span></div>
+        <div><b>Level 1</b><span>rocket designed and built in a group</span></div>
+        <div><b>&plusmn;0.020 in</b><span>tolerance on the aluminum part I'm machining</span></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="stripe" role="presentation"></div>
+
+  <section id="focus">
+    <div class="sec-head">
+      <h2>Focus</h2>
+      <p>The two areas I'm building toward, with the work behind each.</p>
+    </div>
+    <div class="focus-grid">
+      <article class="fcard">
+        <span class="badge">Energy</span>
+        <h3>Energy systems</h3>
+        <p>Hands-on experience with the electrical and fluid systems that move power and water through a building.</p>
+        <ul>
+          <li>Rewired basement electrical connections and redid conduit and Greenfield runs to National Electrical Code standards across two units.</li>
+          <li>Replaced outlets and repaired faulty wiring, which cut rework and improved reliability.</li>
+          <li>Replaced supply lines in sweated copper throughout a 4-unit apartment building.</li>
+          <li>Built a relay-switched pump circuit on an Arduino with live status on an LCD.</li>
+        </ul>
+      </article>
+      <article class="fcard">
+        <span class="badge">Product development</span>
+        <h3>Product development</h3>
+        <p>Taking a part from sketch to model to machined metal, and checking it against the spec.</p>
+        <ul>
+          <li>Designed a front wing in SolidWorks, starting from hand-sketched drafts of each part.</li>
+          <li>Machining a 6061 aluminum pedal-box part from a released drawing, to a &plusmn;0.020 in tolerance.</li>
+          <li>Built and tested prototypes, including an autonomous robot car and a self-watering system.</li>
+          <li>Designed a Level 1 rocket in OpenRocket and worked through the calculations for a safe landing and recovery.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="internship">
+    <div class="sec-head">
+      <h2>Internship</h2>
+      <p>Summer 2026, renovating older apartment buildings.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-item">
+        <div><span class="mono">Jun &ndash; Aug 2026</span><p class="mono org">Internship</p></div>
+        <div>
+          <h3>Residential Plumbing &amp; Electrical Renovation</h3>
+          <p class="mono" style="margin-top:8px">R&amp;L Home &amp; Business Remodeling, LLC</p>
+          <ul>
+            <li>Cut and sweated copper pipe with flux and solder to replace supply lines throughout a 4-unit apartment building, and installed PVC drain lines and fixture connections to local plumbing code.</li>
+            <li>Replaced outlets and rewired basement electrical connections, including redoing conduit runs and Greenfield (flexible metal) connections, to National Electrical Code standards across two units.</li>
+            <li>Diagnosed and repaired failures in existing plumbing and electrical systems, including corroded pipe sections and faulty wiring connections, which cut rework and improved reliability.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="trade">
+      <div class="trade-h"><h3>Electrical</h3><span class="mono">Boxes, conduit, receptacles</span></div>
+      <p class="note">Replaced outlets and rewired basement connections, including redoing conduit runs and Greenfield (flexible metal) connections to National Electrical Code standards across two units.</p>
+      <div class="field-grid">
+        <figure>
+          <img class="zoom" src="img/elec-conduit.jpg" alt="Metal device box with a conduit stub in an opened wall">
+          <figcaption><b>Box + conduit</b>Metal device box set in an opened wall with a bushed conduit connector and a conduit run below it.</figcaption>
+        </figure>
+        <figure>
+          <img class="zoom" src="img/elec-lath.jpg" alt="Device box and conduit mounted on wood lath with plaster keys">
+          <figcaption><b>Through the lath</b>Box fastened between studs on wood lath, with the conduit run down to the bottom plate.</figcaption>
+        </figure>
+        <figure>
+          <img class="zoom" src="img/elec-wires.jpg" alt="Old wall box with black, white and green conductors pulled out">
+          <figcaption><b>Conductors out</b>Black, white and green conductors pulled from the box and ready to terminate.</figcaption>
+        </figure>
+        <figure>
+          <img class="zoom" src="img/elec-outlet.jpg" alt="White receptacle installed in a patched wall">
+          <figcaption><b>Receptacle in</b>Receptacle installed and the wall patched around it.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="trade">
+      <div class="two plain">
+        <div>
+          <div class="trade-h"><h3>Plumbing</h3><span class="mono">Supply &amp; drain</span></div>
+          <figure>
+            <img class="zoom" src="img/plumbing.jpg" alt="Old pipes and shutoff valves laid out on a concrete floor">
+            <figcaption><b>Old piping out</b>Old supply piping, fittings, and shutoff valves pulled out. On this job: copper supply lines cut and sweated throughout a 4-unit building, PVC drains and fixtures to code, and corroded sections replaced.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <div class="trade-h"><h3>Drywall</h3><span class="mono">Hanging</span></div>
+          <figure>
+            <img class="zoom" src="img/drywall.jpg" alt="Drywall strips hung along a wall corner with outlet boxes cut in, hardwood floor and lath debris">
+            <figcaption><b>Hung and cut in</b>Drywall hung along the wall and window return, cut around the outlet boxes, with the old lath stacked on the floor.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rockets">
+    <div class="sec-head">
+      <h2>Rockets</h2>
+      <p>A Level 1 rocket, from the OpenRocket design to the epoxy fillets.</p>
+    </div>
+
+    <article class="sheet">
+      <div class="media pair">
+        <img class="zoom" src="img/rocket-tube.jpg" alt="Rocket airframe tube standing upright in a laser-cut plywood stand">
+        <img class="zoom" src="img/rocket-parts.jpg" alt="Plywood centering rings on a motor mount tube next to the airframe with an eyebolt bulkhead">
+      </div>
+      <div class="body">
+        <span class="badge">Rocketry</span>
+        <h3>Level 1 Rocket</h3>
+        <p>A Level 1 rocket built in a group setting, where I checked the design, assembly, and calculations for a safe landing and recovery. I modeled the design in OpenRocket. The airframe has laser-cut plywood fins and rings, an eyebolt anchors the recovery gear, and PVC build stands hold it while the epoxy fillets cure.</p>
+        <div class="block">
+          <dl>
+            <dt>Class</dt><dd>Level 1</dd>
+            <dt>Design</dt><dd>Modeled in OpenRocket</dd>
+            <dt>Timeline</dt><dd>Sept 2025 &ndash; May 2026</dd>
+            <dt>Fabrication</dt><dd>Laser-cut plywood fins, rings, and fin-alignment template</dd>
+            <dt>Hardware</dt><dd>Eyebolt bulkhead, motor mount tube, nose cone</dd>
+            <dt>Bonding</dt><dd>Two-part epoxy fillets, masking-tape clamping</dd>
+            <dt>Build stands</dt><dd>PVC cradles for the airframe</dd>
+          </dl>
+        </div>
+      </div>
+    </article>
+
+        <div class="holo" id="holo">
+      <canvas id="holo-cv" role="img" aria-label="Rotating holographic wireframe rocket on a projector base"></canvas>
+      <div class="h-hide" hidden><span id="h-roll"></span><span id="h-scan-n"></span></div>
+    </div>
+
+    <div class="log-h"><h3>Rocket build log</h3><span class="mono">Fins, epoxy, schedule</span></div>
+    <div class="log">
+      <figure class="wide">
+        <img class="zoom" src="img/rocket-full.jpg" alt="Complete rocket airframe resting on two PVC build stands, plywood fins at left and black nose cone at right">
+        <figcaption><b>Airframe, end to end</b>Tube body with three plywood fins and a black nose cone, resting on PVC build stands.</figcaption>
+      </figure>
+      <figure class="top">
+        <img class="zoom" src="img/rocket-portrait.jpg" alt="Hysan standing next to the rocket on its stands in the build room">
+        <figcaption><b>In the build room</b>The rocket on its stands in a plastic-sheeted layup area.</figcaption>
+      </figure>
+      <figure>
+        <img class="zoom" src="img/rocket-fins.jpg" alt="Rocket fin can with plywood fins taped in place on the PVC stands">
+        <figcaption><b>Fins set</b>Plywood fins held square to the tube with masking tape while the epoxy cures.</figcaption>
+      </figure>
+      <figure>
+        <img class="zoom" src="img/rocket-epoxy.jpg" alt="Gloved hand spreading epoxy along a fin joint with a stir stick">
+        <figcaption><b>Epoxy fillet</b>Spreading mixed epoxy along the fin-to-tube joint with a stir stick.</figcaption>
+      </figure>
+      <figure>
+        <img class="zoom" src="img/rocket-timeline.jpg" alt="Handwritten build timeline taped to a door while a team member tapes a fin">
+        <figcaption><b>Build schedule</b>The team's timeline on the door: epoxy work, paint, then layups through Friday.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="line-follower">
+    <div class="sec-head">
+      <h2>Line follower</h2>
+      <p>A robot car that reads its sensors and drives itself along a line and through a maze.</p>
+    </div>
+
+    <article class="sheet">
+      <div class="media vid">
+        <video id="lf" src="img/linefollower.mp4" poster="img/linefollower-poster.jpg" muted loop playsinline controls preload="metadata" aria-label="Line follower robot car driving a white tape track"></video>
+      </div>
+      <div class="body">
+        <span class="badge">Robotics</span>
+        <h3>Line Follower Robot Car</h3>
+        <p>A robot car I assembled and wired, with C++ code I wrote to read ultrasonic sensors and drive the motors. It follows a line and completes a maze on its own. Here it runs a white tape track with long curves, tight S-bends, and sharp right-angle corners.</p>
+        <div class="block">
+          <dl>
+            <dt>Type</dt><dd>Autonomous robot car</dd>
+            <dt>Software</dt><dd>C++: ultrasonic sensing and motor control</dd>
+            <dt>Hardware</dt><dd>Four-wheel chassis, motors, hand-wired electronics</dd>
+            <dt>Task</dt><dd>Follow a line and complete a maze autonomously</dd>
+            <dt>Timeline</dt><dd>Sept &ndash; Nov 2024</dd>
+          </dl>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="builds">
+    <div class="sec-head">
+      <h2>More builds</h2>
+      <p>A bench-built Arduino project.</p>
+    </div>
+
+    <article class="sheet flip">
+      <div class="media tall">
+        <img class="zoom" src="img/plant.jpg" alt="Self-watering plant circuit: Arduino Uno, relay, LCD on a breadboard, with clear tubing held over a cup">
+      </div>
+      <div class="body">
+        <span class="badge">Embedded systems</span>
+        <h3>Self-Watering Plant</h3>
+        <p>An Arduino-driven watering system. A relay switches a pump that moves water through clear tubing, and a 16&times;2 LCD shows the pump's status as it runs. Built and tested on the bench before it goes near a plant.</p>
+        <div class="block">
+          <dl>
+            <dt>Controller</dt><dd>Arduino Uno</dd>
+            <dt>Parts</dt><dd>Relay module, pump, tubing, 16&times;2 LCD, breadboard</dd>
+            <dt>Output</dt><dd>Live pump status on the LCD</dd>
+          </dl>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="in-progress">
+    <div class="sec-head">
+      <h2>In progress</h2>
+      <p>A part for the team's pedal box that I'm machining right now. Status as of Oct 25, 2026.</p>
+    </div>
+    <article class="wip">
+      <figure class="dwg">
+        <img class="zoom" src="img/drawing.png" alt="SolidWorks drawing of the Throttle Sensor Tab: an L-bracket with three views, an isometric view, and a title block">
+        <figcaption><b>Part drawing</b>Throttle Sensor Tab, Rev A, 6061 aluminum. Dimensions in inches.</figcaption>
+      </figure>
+      <div class="body">
+        <span class="badge live">In progress</span>
+        <h3>Throttle Sensor Tab</h3>
+        <p>An aluminum L-bracket for the pedal box on the FSAE team's 2026-27 car, made for the Brakes &amp; Ergo subteam. I'm machining it on a manual knee mill from the released drawing. The milling is done so far, and the holes and finishing are next.</p>
+        <div class="block">
+          <dl>
+            <dt>Material</dt><dd>6061 aluminum</dd>
+            <dt>Shape</dt><dd>L-bracket, 2.76 in long, 1.25 in tall, 0.25 in thick</dd>
+            <dt>Holes</dt><dd>2&times; &Oslash;0.20 thru, 1&times; &Oslash;0.47 thru</dd>
+            <dt>Tolerance</dt><dd>&plusmn;0.020 in linear</dd>
+            <dt>Drawing</dt><dd>FE26-BK-PBOX-003-A, Rev A</dd>
+          </dl>
+        </div>
+      </div>
+    </article>
+
+    <div class="progress">
+      <div>
+        <div class="steps-head"><span class="mono">Build steps</span><span class="mono">2 of 5 done</span></div>
+        <ol class="steps">
+          <li class="done"><span class="dot"></span><span class="st">Done</span><h4>Drawing released</h4><p>Rev A, dated 10/7/2026.</p></li>
+          <li class="done"><span class="dot"></span><span class="st">Done so far</span><h4>Milling</h4><p>Milling the aluminum on the manual knee mill, with the part clamped in the machine vise.</p></li>
+          <li class="next"><span class="dot"></span><span class="st">Next</span><h4>Holes</h4><p>Two &Oslash;0.20 thru holes and the &Oslash;0.47 thru hole.</p></li>
+          <li class="next"><span class="dot"></span><span class="st">Next</span><h4>Deburr</h4><p>Break the sharp edges, as the drawing calls for.</p></li>
+          <li class="next"><span class="dot"></span><span class="st">Next</span><h4>Check</h4><p>Measure the finished tab against the drawing.</p></li>
+        </ol>
+      </div>
+      <div class="duo">
+        <figure>
+          <img class="zoom" src="img/mill-vise.jpg" alt="End mill cutting the aluminum part held in a machine vise, with chips on the table">
+          <figcaption><b>Cutting</b>End mill in the machine vise, with aluminum chips on the table.</figcaption>
+        </figure>
+        <figure>
+          <img class="zoom" src="img/mill-operator.jpg" alt="Hysan wearing safety glasses at a blue knee mill with a Trak digital readout">
+          <figcaption><b>At the mill</b>Knee mill with a digital readout and a shop vac for chips.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="background">
+    <div class="sec-head">
+      <h2>Background</h2>
+      <p>Where I study, and the teams and jobs I've had.</p>
+    </div>
+    <div class="edu">
+      <div>
+        <span class="mono">In progress &middot; Expected May 2028</span>
+        <h3>University of Illinois Chicago</h3>
+        <p>B.S., Mechanical Engineering</p>
+      </div>
+      <div>
+        <span class="mono">Aug 2024 &ndash; May 2026</span>
+        <h3>Illinois Institute of Technology</h3>
+        <p>B.S., Mechanical Engineering</p>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-item">
+        <div><span class="mono">Aug 2025 &ndash; Present</span><p class="mono org">Team member</p></div>
+        <div>
+          <h3>FSAE</h3>
+          <p class="mono" style="margin-top:8px">Formula Society of Automotive Engineers</p>
+          <ul>
+            <li>Designed the front wing in SolidWorks, starting from hand-sketched drafts of each part before modeling it.</li>
+            <li>Machining the Throttle Sensor Tab, a 6061 aluminum L-bracket for the pedal box, on a manual knee mill for the Brakes &amp; Ergo subteam. The milling is done so far; the holes and finishing are next (see In progress).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div><span class="mono">Jul 2023 &ndash; Mar 2025</span><p class="mono org">Cafe associate</p></div>
+        <div>
+          <h3>Nutella Cafe</h3>
+          <p class="mono" style="margin-top:8px">Chicago, IL</p>
+          <ul>
+            <li>Worked both the lobby (host, merchandiser, busser) and the kitchen (barista, expediter, cook, prep, food assembly).</li>
+            <li>Learned teamwork and leadership by expediting and cooking in a fast-paced environment.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="toolkit">
+    <div class="sec-head">
+      <h2>Skills</h2>
+      <p>Software, technical methods, and the trade and shop work shown above.</p>
+    </div>
+    <div class="skill-groups">
+      <div>
+        <h3>Software</h3>
+        <div class="tool-row"><span>SolidWorks</span><span>Fusion 360</span><span>AutoCAD</span><span>MATLAB</span><span>OpenRocket</span><span>C++</span></div>
+      </div>
+      <div>
+        <h3>Technical</h3>
+        <div class="tool-row"><span>Isometric sketching</span><span>Sustainable design</span><span>Technical writing</span></div>
+      </div>
+      <div>
+        <h3>Trades &amp; shop</h3>
+        <div class="tool-row"><span>Copper pipe sweating</span><span>Conduit installation</span><span>Wiring &amp; termination</span><span>Drywall hanging</span><span>Manual mill</span><span>Laser cutting</span><span>Epoxy bonding</span><span>Arduino prototyping</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="interests">
+    <div class="sec-head">
+      <h2>Interests</h2>
+      <p>Where I want to take my rocketry next.</p>
+    </div>
+    <article class="goal">
+      <div class="viz">
+        <svg viewBox="0 0 240 360" role="img" aria-label="Diagram of a rocket whose motor nozzle is tilted to steer it">
+          <path class="dash" d="M120 20 V340"/>
+          <path class="ln" d="M96 90 C96 50 112 28 120 18 C128 28 144 50 144 90 V230 H96 Z"/>
+          <path class="ln" d="M96 190 L70 250 L96 240 M144 190 L170 250 L144 240"/>
+          <path class="ac" d="M108 230 L98 276 H142 L132 230" transform="rotate(14 120 230)"/>
+          <path class="ac" d="M176 300 C196 290 204 280 206 262 M206 262 l-9 6 M206 262 l2 11"/>
+          <text x="134" y="338">Nozzle tilts</text>
+        </svg>
+      </div>
+      <div class="body">
+        <span class="badge">Goal</span>
+        <h3>A TVC Rocket</h3>
+        <p>Thrust vector control steers a rocket by tilting its motor instead of relying on fins alone. A flight computer reads a motion sensor and drives servos that swing the motor mount to hold the rocket on course. I want to design, build, and fly one.</p>
+        <div class="blocks">
+          <div>
+            <h4>Already have</h4>
+            <ul>
+              <li>Built a Level 1 rocket, including recovery and assembly</li>
+              <li>C++ for sensors and motors from the robot car</li>
+              <li>SolidWorks modeling and manual mill work for machined mounts</li>
+            </ul>
+          </div>
+          <div class="learn">
+            <h4>Still to learn</h4>
+            <ul>
+              <li>Flight control code that holds a heading</li>
+              <li>Motion sensing for attitude</li>
+              <li>Gimbal mount design and servo drive</li>
+              <li>Ground testing before any flight</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="goal">
+      <div class="viz">
+        <svg viewBox="0 0 240 360" role="img" aria-label="Diagram of a larger rocket with an arrow pointing up">
+          <path class="dash" d="M120 10 V350"/>
+          <path class="ln" d="M100 76 C100 46 114 28 120 18 C126 28 140 46 140 76 V250 H100 Z"/>
+          <path class="ln" d="M100 120 H140 M100 160 H140"/>
+          <path class="ln" d="M100 210 L70 284 L100 262 M140 210 L170 284 L140 262"/>
+          <path class="ac" d="M120 262 V322"/>
+          <path class="ac" d="M200 300 V236 M200 236 l-9 12 M200 236 l9 12"/>
+          <text x="134" y="344">Level 2</text>
+        </svg>
+      </div>
+      <div class="body">
+        <span class="badge">Goal</span>
+        <h3>A Level 2 Rocket</h3>
+        <p>Level 2 is the next high-power certification after Level 1. It means a larger rocket and a bigger motor, and I want to design, build, and fly one after my Level 1.</p>
+        <div class="blocks">
+          <div>
+            <h4>Already have</h4>
+            <ul>
+              <li>Built a Level 1 rocket, from airframe to fin fillets</li>
+              <li>Modeled a rocket design in OpenRocket</li>
+              <li>Laser-cut fins and centering rings, and epoxy bonding</li>
+            </ul>
+          </div>
+          <div class="learn">
+            <h4>Still to learn</h4>
+            <ul>
+              <li>Sizing a larger airframe and motor</li>
+              <li>Stronger construction for higher-power flights</li>
+              <li>Level 2 certification requirements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="contact" class="contact">
+    <p class="mono">Open to internships</p>
+    <h2>Let's <em>build.</em></h2>
+    <div class="contact-row">
+      <a class="btn" href="https://www.linkedin.com/in/hysan-jones-a1098b272" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+      <span class="mail"><span id="mailtxt">1hysanjones@gmail.com</span><button class="copy" id="copy" type="button">Copy</button></span>
+      <span class="mono">Chicago, IL</span>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mono">&copy; 2026 Hysan Jones</span>
+    <span class="mono">University of Illinois Chicago</span>
+  </footer>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-label="Enlarged photo"><img id="lbimg" alt=""></div>
+
+<script>
+  // line-follower dot rides the hero track
+  (function () {
+    var path = document.getElementById('lane'), bot = document.getElementById('bot'), halo = document.getElementById('halo');
+    if (!path || !path.getTotalLength) return;
+    var len = path.getTotalLength();
+    function place(d) {
+      var p = path.getPointAtLength(d);
+      bot.setAttribute('cx', p.x); bot.setAttribute('cy', p.y);
+      halo.setAttribute('cx', p.x); halo.setAttribute('cy', p.y);
+    }
+    place(len * 0.62);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var start = null, dur = 14000;
+    function tick(t) {
+      if (start === null) start = t;
+      place(((t - start) % dur) / dur * len);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  // photo lightbox
+  (function () {
+    var lb = document.getElementById('lb'), img = document.getElementById('lbimg');
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (t.classList && t.classList.contains('zoom')) { img.src = t.src; img.alt = t.alt; lb.classList.add('on'); }
+      else if (lb.classList.contains('on')) { lb.classList.remove('on'); }
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+  })();
+
+  // copy email
+  (function () {
+    var b = document.getElementById('copy'), t = document.getElementById('mailtxt');
+    if (!b || !t) return;
+    b.addEventListener('click', function () {
+      function done() { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); }
+      function sel() { var r = document.createRange(); r.selectNodeContents(t); var g = getSelection(); g.removeAllRanges(); g.addRange(r); }
+      try { navigator.clipboard.writeText(t.textContent).then(done, sel); } catch (e) { sel(); }
+    });
+  })();
+
+  // try muted autoplay for the robot clip; controls stay available if it is blocked
+  (function () {
+    var v = document.getElementById('lf');
+    if (v && v.play) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  })();
+</script>
+
+<script>
+(function () {
+  var cv = document.getElementById('holo-cv'), ctx = cv.getContext('2d'), stage = document.getElementById('holo');
+  var W = 0, H = 0, dpr = 1;
+  var PAL = [{ n: 'Gold', c: [245, 197, 24] }];
+  var pal = 0, paused = false, beamOn = true;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) paused = true;
+
+  function resize() {
+    var r = cv.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  if (window.ResizeObserver) new ResizeObserver(function () { resize(); draw(0); }).observe(stage);
+  window.addEventListener('resize', function () { resize(); draw(0); });
+
+  // ---- rocket profile (y from -1.6 nozzle to 1.6 tip)
+  function radius(y) {
+    if (y > 0.7) { var t = (y - 0.7) / 0.9; return 0.28 * Math.pow(Math.max(0, 1 - t), 0.75); }
+    if (y > -1.2) return 0.28;
+    if (y > -1.38) { var u = (-1.2 - y) / 0.18; return 0.28 - 0.08 * u; }
+    var v = Math.min(1, (-1.38 - y) / 0.22); return 0.2 + 0.07 * v * v;
+  }
+  var ys = [], y;
+  for (y = 1.6; y > 0.7; y -= 0.075) ys.push(+y.toFixed(3));
+  for (y = 0.7; y > -1.2; y -= 0.15) ys.push(+y.toFixed(3));
+  for (y = -1.2; y >= -1.601; y -= 0.05) ys.push(+y.toFixed(3));
+  var SEG = 40, MER = 16;
+  var BASEY = -2.3;
+
+  // ---- projection
+  var ang = 0.6, vel = 0.5, TILT = 0.35, D = 5.2;
+  var S = 100, CY = 0, CX = 0;
+  var gl = { on: false, y: 0, h: 0, dx: 0, until: 0, next: 3 };
+  var cs, sn, ct, st;
+  function setRot() { cs = Math.cos(ang); sn = Math.sin(ang); ct = Math.cos(TILT); st = Math.sin(TILT); }
+  function P(x, yy, z) {
+    var x1 = x * cs + z * sn, z1 = -x * sn + z * cs;
+    var y2 = yy * ct - z1 * st, z2 = yy * st + z1 * ct;
+    var k = D / (D - z2);
+    var sx = CX + x1 * k * S, sy = CY - y2 * k * S;
+    if (gl.on && Math.abs(sy - gl.y) < gl.h) sx += gl.dx;
+    return [sx, sy, z2, yy];
+  }
+
+  // ---- segment collection
+  var segs = [], hot = [], band = 0;
+  function seg(p, q, boost) {
+    var z = (p[2] + q[2]) * 0.5;
+    var a = 0.14 + 0.86 * Math.min(1, Math.max(0, (z + 0.95) / 1.9));
+    var wy = ((p[3] + q[3]) * 0.5 + 2.3) / 3.9;
+    var d = wy - band, h = Math.exp(-(d * d) / 0.0012);
+    if (boost) a = Math.min(1, a * boost);
+    var o = [p[0], p[1], q[0], q[1], a];
+    (h > 0.35 ? hot : segs).push(o);
+  }
+  function polyline(pts, boost) { for (var i = 0; i < pts.length - 1; i++) seg(pts[i], pts[i + 1], boost); }
+  function ring(yy, r, n, boost, cx, cz) {
+    var pts = [];
+    for (var i = 0; i <= n; i++) { var t = i / n * Math.PI * 2; pts.push(P((cx || 0) + Math.cos(t) * r, yy, (cz || 0) + Math.sin(t) * r)); }
+    polyline(pts, boost);
+  }
+
+  // ---- particles (exhaust)
+  var parts = [];
+  function spawn(n) {
+    for (var i = 0; i < n; i++) {
+      var t = Math.random() * Math.PI * 2, r = Math.random() * 0.16;
+      parts.push({ x: Math.cos(t) * r, z: Math.sin(t) * r, y: -1.62, vy: -(0.7 + Math.random() * 0.7), vx: (Math.random() - 0.5) * 0.12, vz: (Math.random() - 0.5) * 0.12, life: 0, max: 0.8 + Math.random() * 0.5 });
+    }
+  }
+
+  function draw(dt) {
+    ctx.clearRect(0, 0, W, H);
+    if (!W) return;
+    S = Math.min(H * 0.152, W * 0.2); CX = W / 2; CY = H / 2 - 0.5 * S;
+    setRot();
+    segs.length = 0; hot.length = 0;
+    var col = PAL[pal].c, i, j;
+
+    // projector base
+    if (beamOn) {
+      var bs = [0.9, 1.3, 1.72];
+      for (i = 0; i < bs.length; i++) ring(BASEY, bs[i], 64, i === 0 ? 1.2 : 0.8);
+      var rot = ang * -1.4;
+      for (i = 0; i < 36; i++) {
+        var tt = rot + i / 36 * Math.PI * 2, r1 = 1.3, r2 = (i % 3 === 0) ? 1.46 : 1.38;
+        seg(P(Math.cos(tt) * r1, BASEY, Math.sin(tt) * r1), P(Math.cos(tt) * r2, BASEY, Math.sin(tt) * r2), 1);
+      }
+      for (i = 0; i < 14; i++) {
+        var tb = i / 14 * Math.PI * 2 + ang * 0.2;
+        var a0 = P(Math.cos(tb) * 0.9, BASEY, Math.sin(tb) * 0.9), a1 = P(Math.cos(tb) * 0.55, 1.9, Math.sin(tb) * 0.55);
+        var o = [a0[0], a0[1], a1[0], a1[1], 0.1]; segs.push(o);
+      }
+    }
+
+    // body rings + meridians
+    for (i = 0; i < ys.length; i++) {
+      var yy = ys[i], r = radius(yy);
+      if (r < 0.004) continue;
+      var emph = (Math.abs(yy - 0.7) < 0.01 || Math.abs(yy + 1.2) < 0.01 || Math.abs(yy - 0.2) < 0.08) ? 1.25 : 1;
+      ring(yy, r, SEG, emph);
+    }
+    for (j = 0; j < MER; j++) {
+      var t = j / MER * Math.PI * 2, pts = [];
+      for (i = 0; i < ys.length; i++) { var rr = radius(ys[i]); pts.push(P(Math.cos(t) * rr, ys[i], Math.sin(t) * rr)); }
+      polyline(pts, 1);
+    }
+
+    // fins
+    for (j = 0; j < 3; j++) {
+      var f = j / 3 * Math.PI * 2 + Math.PI / 6, cf = Math.cos(f), sf = Math.sin(f);
+      function F(rad, yq) { return P(cf * rad, yq, sf * rad); }
+      var outline = [F(0.28, -0.35), F(0.28, -1.25), F(0.82, -1.52), F(0.82, -1.1), F(0.28, -0.35)];
+      polyline(outline, 1.35);
+      for (i = 1; i < 6; i++) {
+        var u = i / 6;
+        var l0 = F(0.28 + (0.82 - 0.28) * u, -0.35 + (-1.1 + 0.35) * u), l1 = F(0.28 + (0.82 - 0.28) * u, -1.25 + (-1.52 + 1.25) * u);
+        seg(l0, l1, 0.9);
+      }
+    }
+
+    // porthole
+    var wc = [0.285 * Math.sin(0), 0.25, 0.285 * Math.cos(0)], wp = [];
+    for (i = 0; i <= 28; i++) { var th = i / 28 * Math.PI * 2; wp.push(P(wc[0] + 0.09 * Math.cos(th), wc[1] + 0.09 * Math.sin(th), wc[2] + 0.012)); }
+    polyline(wp, 1.5);
+
+    // orbit ring + satellite
+    var orb = [], oa = performance.now() / 1000 * 0.6;
+    for (i = 0; i <= 90; i++) {
+      var to = i / 90 * Math.PI * 2, ox = Math.cos(to) * 1.25, oz = Math.sin(to) * 1.25;
+      var oy = 0.1 + oz * 0.36; orb.push(P(ox, oy, oz * 0.94));
+    }
+    for (i = 0; i < orb.length - 1; i += 1) if (i % 4 < 3) seg(orb[i], orb[i + 1], 0.9);
+    var sx0 = Math.cos(oa) * 1.25, sz0 = Math.sin(oa) * 1.25, sat = P(sx0, 0.1 + sz0 * 0.36, sz0 * 0.94);
+
+    // exhaust
+    if (dt > 0) {
+      spawn(Math.min(3, Math.round(dt * 70)));
+      for (i = parts.length - 1; i >= 0; i--) {
+        var pp = parts[i]; pp.life += dt; pp.y += pp.vy * dt; pp.x += pp.vx * dt; pp.z += pp.vz * dt;
+        if (pp.life > pp.max || pp.y < BASEY + 0.05) parts.splice(i, 1);
+      }
+    }
+    var pdots = [];
+    for (i = 0; i < parts.length; i++) {
+      var q = parts[i], pa = 1 - q.life / q.max;
+      var p0 = P(q.x, q.y, q.z), p1 = P(q.x, q.y + 0.09, q.z);
+      pdots.push([p0[0], p0[1], p1[0], p1[1], 0.12 + 0.7 * pa * pa]);
+    }
+
+    // ---- render
+    var flick = 1 - (Math.random() < 0.08 ? Math.random() * 0.25 : 0.04 * Math.random()) - (gl.on ? 0.15 : 0);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.globalCompositeOperation = 'lighter';
+    function bucketDraw(list, rgb, glowW, coreW) {
+      var B = 6, bk = [], b;
+      for (b = 0; b < B; b++) bk.push([]);
+      for (var n = 0; n < list.length; n++) { b = Math.min(B - 1, Math.floor(list[n][4] * B)); bk[b].push(list[n]); }
+      for (b = 0; b < B; b++) {
+        if (!bk[b].length) continue;
+        var a = ((b + 0.5) / B) * flick;
+        ctx.beginPath();
+        for (var m = 0; m < bk[b].length; m++) { var s = bk[b][m]; ctx.moveTo(s[0], s[1]); ctx.lineTo(s[2], s[3]); }
+        ctx.strokeStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + (a * 0.22).toFixed(3) + ')';
+        ctx.lineWidth = glowW; ctx.stroke();
+        ctx.strokeStyle = 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + Math.min(1, a * 0.95).toFixed(3) + ')';
+        ctx.lineWidth = coreW; ctx.stroke();
+      }
+    }
+    bucketDraw(segs, col, 4, 1.1);
+    bucketDraw(pdots, col, 3, 1.4);
+    var white = [Math.min(255, col[0] + 140), Math.min(255, col[1] + 90), Math.min(255, col[2] + 90)];
+    bucketDraw(hot, white, 6, 1.7);
+
+    // satellite
+    ctx.fillStyle = 'rgba(' + white[0] + ',' + white[1] + ',' + white[2] + ',0.95)';
+    ctx.beginPath(); ctx.arc(sat[0], sat[1], 3, 0, 6.2832); ctx.fill();
+    ctx.fillStyle = 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',0.25)';
+    ctx.beginPath(); ctx.arc(sat[0], sat[1], 9, 0, 6.2832); ctx.fill();
+
+    // projector glow disc
+    if (beamOn) {
+      var c0 = P(0, BASEY, 0), g = ctx.createRadialGradient(c0[0], c0[1], 0, c0[0], c0[1], S * 1.9);
+      g.addColorStop(0, 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',0.28)');
+      g.addColorStop(1, 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',0)');
+      ctx.save(); ctx.translate(0, c0[1]); ctx.scale(1, 0.34); ctx.translate(0, -c0[1]);
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c0[0], c0[1], S * 1.9, 0, 6.2832); ctx.fill(); ctx.restore();
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  // ---- HUD
+  var rollEl = document.getElementById('h-roll'), scanEl = document.getElementById('h-scan-n');
+  var hudT = 0;
+  function hud() {
+    var deg = ((ang * 180 / Math.PI) % 360 + 360) % 360, r = Math.round(deg) % 360;
+    rollEl.textContent = ('00' + r).slice(-3);
+    scanEl.textContent = ('0' + Math.round(band * 100)).slice(-2);
+  }
+
+  // ---- loop (only runs while the stage is on screen)
+  var visible = true;
+  if (window.IntersectionObserver) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(stage);
+  var last = 0, dragging = false, lastX = 0, lastT = 0, dvel = 0;
+  function frame(t) {
+    var dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
+    if (visible) {
+      if (!paused) {
+        if (!dragging) { vel += (0.5 - vel) * Math.min(1, dt * 1.6); ang += vel * dt; }
+        band = (band + dt * 0.3) % 1;
+        gl.next -= dt;
+        if (!gl.on && gl.next <= 0) { gl.on = true; gl.until = 0.14; gl.y = Math.random() * H; gl.h = 14 + Math.random() * 50; gl.dx = (Math.random() < 0.5 ? -1 : 1) * (6 + Math.random() * 14); }
+        if (gl.on) { gl.until -= dt; if (gl.until <= 0) { gl.on = false; gl.next = 3 + Math.random() * 4; } }
+        draw(dt);
+      } else if (dragging) { draw(0); }
+      hudT += dt; if (hudT > 0.08) { hudT = 0; hud(); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  stage.addEventListener('pointerdown', function (e) {
+    dragging = true; lastX = e.clientX; lastT = performance.now(); stage.classList.add('drag');
+    try { stage.setPointerCapture(e.pointerId); } catch (x) {}
+  });
+  stage.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var now = performance.now(), dx = e.clientX - lastX, dts = Math.max(1, now - lastT) / 1000;
+    ang += dx * 0.012; dvel = dx * 0.012 / dts; vel = Math.max(-6, Math.min(6, dvel)); lastX = e.clientX; lastT = now;
+    if (paused) draw(0);
+  });
+  function up() { dragging = false; stage.classList.remove('drag'); }
+  stage.addEventListener('pointerup', up); stage.addEventListener('pointercancel', up);
+
+  var lastSY = window.scrollY || 0;
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY || 0, dy = y - lastSY; lastSY = y;
+    if (visible) { ang += dy * 0.006; vel = Math.max(-3, Math.min(3, vel + dy * 0.02)); }
+  }, { passive: true });
+  resize(); band = 0.35; draw(0); hud();
+  requestAnimationFrame(frame);
+})();
+</script>
